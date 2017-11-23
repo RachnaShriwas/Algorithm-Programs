@@ -1,6 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+class Compare
+{
+public:
+    bool operator() (pair<int, int> p1, pair<int, int> p2)
+    {
+        return p1.second > p2.second;
+    }
+};
+
 void dijkstra(int s, vector<pair<int, int> > adj[], int size, int v[]) {
     int p[size+1];
     int color[size+1];
@@ -12,7 +21,7 @@ void dijkstra(int s, vector<pair<int, int> > adj[], int size, int v[]) {
     for(int i = 1; i <= size; i++)
         color[i] = 'r';
 
-    priority_queue< pair<int,int> , vector<pair<int,int> >, greater<pair<int,int> > > q;
+    priority_queue< pair<int,int> , vector<pair<int,int> >, Compare > q;
     p[s] = 0;
     q.push(make_pair(s, p[s]));
 
